@@ -1,21 +1,20 @@
-import re
+
 from flask import Blueprint, request, jsonify
 from .models import Book
 from . import db
 from .auth import require_api_key
-from .helpers import validate_book_data
+from .helpers import validate_book_data, validate_isbn
 from datetime import datetime
 
 api_bp = Blueprint('api', __name__)
 
-# Regular expression for a valid ISBN (13 digits)
-ISBN_REGEX = r'^\d{13}$'
 
-def validate_isbn(isbn):
-    """Validate the ISBN format (must be 13 digits)."""
-    if not re.match(ISBN_REGEX, isbn):
-        return "Invalid ISBN format. ISBN must be 13 digits."
-    return None
+
+# def validate_isbn(isbn):
+#     """Validate the ISBN format (must be 13 digits)."""
+#     if not re.match(ISBN_REGEX, isbn):
+#         return "Invalid ISBN format. ISBN must be 13 digits."
+#     return None
 
 @api_bp.route('/books', methods=['GET', 'OPTIONS'])
 @require_api_key

@@ -125,5 +125,43 @@ class TestBookAPI(unittest.TestCase):
         self.assertIn('error', response.json)  # Ensure error is returned
         self.assertIn('ISBN already exists', response.json['error'])
 
+    # Edge Case 4: Adding a Book with Empty Fields
+    def test_add_book_empty_fields(self):
+        """Test adding a book with empty fields."""
+        response = self.app.post('/api/books', json={
+            "title": "",  # Empty title
+            "author": "",  # Empty author
+            "isbn": "1234567890123",  # Valid ISBN
+            "publish_date": "2024-01-01"
+        }, headers={"X-API-Key": "fake-key"})
+        
+        self.assertEqual(response.status_code, 400)  # Bad Request
+        self.assertIn('error', response.json)  # Ensure error is returned
+        self.assertIn('cannot be empty', response.json['error']) 
+
+        # Testing empty ISBN
+        response = self.app.post('/api/books', json={
+            "title": "Valid Title",
+            "author": "Valid Author",
+            "isbn": "",  # Empty ISBN
+            "publish_date": "2024-01-01"
+        }, headers={"X-API-Key": "fake-key"})
+
+        self.assertEqual(response.status_code, 400)  # Bad Request
+        self.assertIn('error', response.json)  # Ensure error is returned
+        self.assertIn('ISBN cannot be empty', response.json['error'])  
+
+        # Testing empty publish date
+        response = self.app.post('/api/books', json={
+            "title": "Valid Title",
+            "author": "Valid Author",
+            "isbn": "1234567890123",
+            "publish_date": ""  # Empty publish date
+        }, headers={"X-API-Key": "fake-key"})
+
+        self.assertEqual(response.status_code, 400)  # Bad Request
+        self.assertIn('error', response.json)  # Ensure error is returned
+        self.assertIn("The field 'publish_date' is required and cannot be empty.", response.json['error'])  
+
 if __name__ == '__main__':
     unittest.main()
