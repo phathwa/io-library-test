@@ -45,7 +45,7 @@ pip3 install -r requirements.txt
 # echo "export DATABASE_URI=$DATABASE_URI" >> /etc/profile
 
 # Set Flask environment variable
-echo "export FLASK_ENV=development" >> /etc/profile
+echo "export FLASK_ENV=production" >> /etc/profile
 
 # Apply the environment variables
 source /etc/profile

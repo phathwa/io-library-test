@@ -2,9 +2,9 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
-  bucket = "io-library-code"
-}
+# resource "aws_s3_bucket" "bucket" {
+#   bucket = "io-library-code"
+# }
 
 # Removed aws_s3_bucket_acl as it was causing issues.
 # resource "aws_s3_object" "app_code" {
