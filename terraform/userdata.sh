@@ -51,7 +51,7 @@ echo "export FLASK_ENV=production" >> /etc/profile
 source /etc/profile
 
 # Start application
-echo "starting application........"
+echo "starting application......"
 nohup python3 main.py > /var/log/io-library-app.log 2>&1 &
 
 
