@@ -1,0 +1,20 @@
+terraform apply -auto-approve
+
+
+LOGS
+# Check cloud-init logs
+sudo cat /var/log/cloud-init.log
+sudo cat /var/log/cloud-init-output.log
+# api logs
+cat /var/log/io-library-app.log
+tail -n 100 /var/log/io-library-app.log
+
+
+
+# Create creation
+aws secretsmanager create-secret --name api-key --secret-string '{"x-api-key":"secretkey"}'
+
+
+# docker
+docker build -t io-library-api:latest . 
+docker run -it -p 80:80 --name books-api io-library-api:latest

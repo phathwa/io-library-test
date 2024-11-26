@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animation for fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom animation for scaling button */
+        @keyframes scaleButton {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Applying fadeIn animation to page elements */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Scaling effect for button on hover */
+        .scale-on-hover:hover {
+            animation: scaleButton 0.3s ease-out;
+        }
+
+        /* Remove vertical scrollbar */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+    <div class="container mx-auto px-6 py-20 flex items-center justify-center min-h-screen fade-in">
+        <div class="text-center">
+            <h1 class="text-6xl font-extrabold text-white mb-6 
+            leading-tight animate__animated animate__fadeIn">Welcome to<br> IO Library API</h1>
+            <p class="text-lg text-gray-300 mb-10 animate__animated 
+            animate__fadeIn animate__delay-1s">Seamlessly manage and interact with a collection of books via our API.</p>
+            <a href="/apidocs" class="inline-block text-lg font-semibold 
+            text-black bg-white py-3 px-8 rounded-full shadow-lg transition-all 
+            scale-on-hover hover:bg-gray-200 hover:shadow-xl">Visit API Documentation</a>
+        </div>
+    </div>
+
+</body>
+</html>
