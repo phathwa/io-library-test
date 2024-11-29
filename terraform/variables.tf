@@ -18,3 +18,8 @@ variable "vpc_cidr" {
   type        = string
   default     = "10.0.0.0/16"  # You can adjust this CIDR block as needed
 }
+
+variable "port" {
+    type = number
+    default = 80
+}
